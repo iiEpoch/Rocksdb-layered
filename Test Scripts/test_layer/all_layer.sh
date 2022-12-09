@@ -16,8 +16,10 @@ path4="./db_test"
 #report path
 path5="/mnt/222"
 
+#core*3
 threads=1
 
+#core
 back_g=24
 
 #write参数：value_size threads max_backgroungjobs dataset db path_pmem path_ssd wal_path report_file
