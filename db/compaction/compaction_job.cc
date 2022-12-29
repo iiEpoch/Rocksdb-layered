@@ -1467,7 +1467,7 @@ Status CompactionJob::OpenCompactionOutputFile(
   assert(sub_compact != nullptr);
   assert(sub_compact->builder == nullptr);
 
-  if(sub_compact->compaction->output_level()<=2)
+  if(sub_compact->compaction->output_level()<=3)
     {
       sub_compact->compaction->setpath_0();
     }
