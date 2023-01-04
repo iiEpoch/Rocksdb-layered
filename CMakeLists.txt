@@ -67,6 +67,7 @@ option(WITH_LZ4 "build with lz4" OFF)
 option(WITH_ZLIB "build with zlib" OFF)
 option(WITH_ZSTD "build with zstd" OFF)
 option(WITH_WINDOWS_UTF8_FILENAMES "use UTF8 as characterset for opening files, regardles of the system code page" OFF)
+option(WITH_LAYER "build the layered rocksdb" OFF)
 if (WITH_WINDOWS_UTF8_FILENAMES)
   add_definitions(-DROCKSDB_WINDOWS_UTF8_FILENAMES)
 endif()
@@ -91,6 +92,7 @@ include(CMakeDependentOption)
 CMAKE_DEPENDENT_OPTION(WITH_GFLAGS "build with GFlags" ON
   "NOT MSVC;NOT MINGW" OFF)
 
+  
 if(MSVC)
   option(WITH_XPRESS "build with windows built in compression" OFF)
   include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty.inc)
@@ -106,7 +108,11 @@ else()
       list(APPEND THIRDPARTY_LIBS JeMalloc::JeMalloc)
     endif()
   endif()
-
+  
+  if(WITH_LAYER)
+    add_definitions(-DUSE_LAYER)
+  endif()
+  
   if(WITH_GFLAGS)
     # Config with namespace available since gflags 2.2.2
     option(GFLAGS_USE_TARGET_NAMESPACE "Use gflags import target with namespace." ON)
@@ -140,7 +146,7 @@ else()
     add_definitions(-DZLIB)
     list(APPEND THIRDPARTY_LIBS ZLIB::ZLIB)
   endif()
-
+  
   option(WITH_BZ2 "build with bzip2" OFF)
   if(WITH_BZ2)
     find_package(BZip2 REQUIRED)
