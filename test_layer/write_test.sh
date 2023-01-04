@@ -17,9 +17,9 @@ threads=1
 
 back_g=24
 
-for j in {56,112}
+for j in {56,112} #dataset
 do
-	for i in {256,512,1024,4096}
+	for i in {256,512,1024,4096}  #value_size
 	do
 		
 		#准备
