@@ -92,12 +92,14 @@ class Compaction {
   int level(size_t compaction_input_level = 0) const {
     return inputs_[compaction_input_level].level;
   }
+  #ifdef USE_LAYER
   void setpath_0() {
     output_path_id_=0;
   }
    void setpath_1() {
     output_path_id_=1;
   }
+  #endif
   int start_level() const { return start_level_; }
 
   // Outputs will go to this level
@@ -338,7 +340,9 @@ class Compaction {
   const int number_levels_;
   ColumnFamilyData* cfd_;
   Arena arena_;          // Arena used to allocate space for file_levels_
+#ifdef USE_LAYER
 public:
+#endif
   uint32_t output_path_id_;
 private:
   CompressionType output_compression_;
