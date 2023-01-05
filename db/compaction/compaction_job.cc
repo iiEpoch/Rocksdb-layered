@@ -1475,7 +1475,7 @@ Status CompactionJob::OpenCompactionOutputFile(
     {
       sub_compact->compaction->setpath_1();
     }
-  #endif
+ #endif
   // no need to lock because VersionSet::next_file_number_ is atomic
   uint64_t file_number = versions_->NewFileNumber();
   std::string fname =
