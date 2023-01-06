@@ -338,9 +338,9 @@ class Compaction {
   const int number_levels_;
   ColumnFamilyData* cfd_;
   Arena arena_;          // Arena used to allocate space for file_levels_
-  public:
+public:
   uint32_t output_path_id_;
-  private:
+private:
   CompressionType output_compression_;
   CompressionOptions output_compression_opts_;
   // If true, then the comaction can be done by simply deleting input files.

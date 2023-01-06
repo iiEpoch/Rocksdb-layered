@@ -1466,7 +1466,8 @@ Status CompactionJob::OpenCompactionOutputFile(
     SubcompactionState* sub_compact) {
   assert(sub_compact != nullptr);
   assert(sub_compact->builder == nullptr);
-  if(sub_compact->compaction->output_level()<=3)
+
+  if(sub_compact->compaction->output_level()<=2)
     {
       sub_compact->compaction->setpath_0();
     }
@@ -1474,6 +1475,7 @@ Status CompactionJob::OpenCompactionOutputFile(
     {
       sub_compact->compaction->setpath_1();
     }
+  
   // no need to lock because VersionSet::next_file_number_ is atomic
   uint64_t file_number = versions_->NewFileNumber();
   std::string fname =
