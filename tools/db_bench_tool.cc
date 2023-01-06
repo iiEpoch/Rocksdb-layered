@@ -4021,10 +4021,11 @@ class Benchmark {
 
   void InitializeOptionsGeneral(Options* opts) {
     Options& options = *opts;
+
     options.create_missing_column_families = FLAGS_num_column_families > 1;
     options.statistics = dbstats;
     options.wal_dir = FLAGS_wal_dir;
-    options.db_paths.emplace_back(FLAGS_db_paths_1, 0);
+     options.db_paths.emplace_back(FLAGS_db_paths_1, 0);
     options.db_paths.emplace_back(FLAGS_db_paths_2, 0);
     options.create_if_missing = !FLAGS_use_existing_db;
     options.dump_malloc_stats = FLAGS_dump_malloc_stats;
