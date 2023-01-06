@@ -590,11 +590,9 @@ DEFINE_bool(show_table_properties, false,
 
 DEFINE_string(db, "", "Use the db with the following name.");
 
-#ifdef USE_LAYER
 DEFINE_string(db_paths_1, "", "Use the db_paths with the following name.");
 
 DEFINE_string(db_paths_2, "", "Use the db_paths with the following name.");
-#endif
 
 // Read cache flags
 
@@ -4026,10 +4024,8 @@ class Benchmark {
     options.create_missing_column_families = FLAGS_num_column_families > 1;
     options.statistics = dbstats;
     options.wal_dir = FLAGS_wal_dir;
-#ifdef USE_LAYER
-     options.db_paths.emplace_back(FLAGS_db_paths_1, 0);
+    options.db_paths.emplace_back(FLAGS_db_paths_1, 0);
     options.db_paths.emplace_back(FLAGS_db_paths_2, 0);
-#endif
     options.create_if_missing = !FLAGS_use_existing_db;
     options.dump_malloc_stats = FLAGS_dump_malloc_stats;
     options.stats_dump_period_sec =
